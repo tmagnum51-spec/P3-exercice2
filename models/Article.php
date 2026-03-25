@@ -10,7 +10,9 @@
     private string $title = "";
     private string $content = "";
     private ?DateTime $dateCreation = null;
-    private ?DateTime $dateUpdate = null;  
+    private ?DateTime $dateUpdate = null;
+    private int $views = 0;
+    private int $commentCount = 0;   
 
     /**
      * Setter pour l'id de l'utilisateur. 
@@ -57,7 +59,32 @@
         $this->content = $content;
     }
 
-    
+    // setter pour le nombre de vues
+    public function setViews(int $views) : void 
+    {
+        $this->views = $views;
+
+    }
+
+    //getter pour le nombre de vues
+    public function getViews() : int
+    {
+        return $this->views;
+        
+    }
+// setter pour le nombre de commentaires
+    public function setCommentCount(int $commentCount) : void 
+    {
+        $this->commentCount = $commentCount;
+
+    }
+
+    //getter pour le nombre de commentaires
+    public function getCommentCount() : int
+    {
+        return $this->commentCount;
+        
+    }
     /**
      * Getter pour le contenu.
      * Retourne les $length premiers caractères du contenu.

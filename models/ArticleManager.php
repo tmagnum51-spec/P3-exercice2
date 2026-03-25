@@ -9,9 +9,14 @@ class ArticleManager extends AbstractEntityManager
      * Récupère tous les articles.
      * @return array : un tableau d'objets Article.
      */
-    public function getAllArticles() : array
+    public function getAllArticles(string $sort = 'date_creation', string $order = 'DESC') : array
     {
-        $sql = "SELECT * FROM article";
+        // Sécurité : on vérifie que le tri demandé est autorisé pour éviter les injections SQL
+        $allowedSorts = ['date_creation', 'views', 'commentCount'];
+        $sort = in_array($sort, $allowedSorts) ? $sort : 'date_creation';
+        $order = ($order === 'ASC') ? 'ASC' : 'DESC';
+
+        $sql = "SELECT a.*, COUNT(c.id) AS commentCount FROM article a LEFT JOIN comment c ON a.id = c.id_article GROUP BY a.id ORDER BY $sort $order";
         $result = $this->db->query($sql);
         $articles = [];
 
@@ -36,6 +41,14 @@ class ArticleManager extends AbstractEntityManager
         }
         return null;
     }
+    public function countArticleViews(int $id) : void
+    {
+        $sql = "UPDATE `article` SET `views`= views+1 WHERE id= :id";
+        $result = $this->db->query($sql, ['id' => $id]);  
+    }
+    
+
+    
 
     /**
      * Ajoute ou modifie un article.

@@ -68,6 +68,10 @@ try {
             $adminController = new AdminController();
             $adminController->updateArticle();
             break;
+        case 'showGridView': 
+            $adminController = new AdminController();
+            $adminController->showGridView();
+            break;
 
         case 'deleteArticle':
             $adminController = new AdminController();

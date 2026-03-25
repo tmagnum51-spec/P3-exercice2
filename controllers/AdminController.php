@@ -24,6 +24,24 @@ class AdminController {
             'articles' => $articles
         ]);
     }
+    public function showGridView() : void {
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
+        // On récupère les articles.
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getAllArticles();
+
+        //On récupère les commentaires
+        $commentManager = new CommentManager();
+      
+
+        // On affiche la page d'administration.
+        $view = new View("GridView");
+        $view->render("gridView", [
+            'articles' => $articles, 'comments' => $commentManager
+        ]);
+    }
 
     /**
      * Vérifie que l'utilisateur est connecté.

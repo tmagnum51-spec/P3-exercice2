@@ -7,17 +7,22 @@
 
 <h2>Edition des articles</h2>
 
+<div class="sorting-options">
+    <span>Trier par date : </span>
+    <a href="index.php?action=showGridView&sort=date&order=asc">⬆️ Plus ancien</a> | 
+    <a href="index.php?action=showGridView&sort=date&order=desc">⬇️ Plus récent</a>
+</div>
 <div class="adminArticle">
     <?php foreach ($articles as $article) { ?>
         <div class="articleLine">
             <div class="title"><?= $article->getTitle() ?></div>
             <div class="views"><?= $article->getViews() ?> vues</div>
-            <div class="content"><?= $article->getContent(200) ?></div>
-            <div><a class="submit" href="index.php?action=showUpdateArticleForm&id=<?= $article->getId() ?>">Modifier</a></div>
-            <div><a class="submit" href="index.php?action=deleteArticle&id=<?= $article->getId() ?>" <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer cet article ?") ?> >Supprimer</a></div>
+            <div class="views"><?= $article->getCommentCount() ?> commentaires</div>
+             <div class="views"><?= $article->getDateCreation()->format('d/m/Y') ?></div>
+           
         </div>
     <?php } ?>
 </div>
 
-<a class="submit" href="index.php?action=showUpdateArticleForm">Ajouter un article</a></br>
+<a class="submit" href="index.php?action=admin">Admin</a></br>
 <a class="submit" href="index.php?action=showGridView">Vue d'ensemble</a>
