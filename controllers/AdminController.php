@@ -29,8 +29,18 @@ class AdminController {
         $this->checkIfUserIsConnected();
         
         //On récupère l'ordre et le tri demandé
-        $sort= $_GET['sort']??'date_creation';
-        $order=$_GET['order']??'DESC';
+        $sortType =['date_creation', 'title', 'comments', 'views'];
+
+        // On récupère la valeur ou on met null si elle n'existe pas
+        $requestedSort = $_GET['sort'] ?? null;
+
+        // On vérifie si c'est autorisé, sinon on met 'date_creation' par défaut
+        if ($requestedSort !== null && in_array($requestedSort, $sortType)) {
+            $sort = $requestedSort;
+        }   else {
+                $sort = 'date_creation';
+            }
+        $order = (isset($_GET['order']) && $_GET['order'] === 'ASC') ? 'ASC' : 'DESC';
         
 
         // On récupère les articles.
