@@ -27,14 +27,18 @@ class AdminController {
     public function showGridView() : void {
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
+        
+        //On récupère l'ordre et le tri demandé
+        $sort= $_GET['sort']??'date_creation';
+        $order=$_GET['order']??'DESC';
+        
 
         // On récupère les articles.
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles();
+        $articles = $articleManager->getAllArticles($sort, $order);
 
         //On récupère les commentaires
         $commentManager = new CommentManager();
-      
 
         // On affiche la page d'administration.
         $view = new View("GridView");

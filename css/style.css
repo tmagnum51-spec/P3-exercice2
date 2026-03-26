@@ -306,37 +306,42 @@ a.info {
 /**
  * Partie admin
  */ 
+
 .adminArticle {
-    margin-bottom: 20px;
-    border: 1px solid var(--quoteColor);
-    background-color: white; /* Fond de secours */
+    margin-bottom: 0px;
+    background-color: var(--commentPaleColor);
+    color: white;
 }
+.adminArticle:nth-of-type(even){
+        background-color: var(--headerColor);
+
+}
+
 
 .articleLine {
     display: flex; 
-    color: #333; /* Texte sombre pour la lisibilité */
 }
 
-/* L'effet zébré sur la ligne entière */
-.articleLine:nth-child(even) {
-    background-color: #f8f9fa; /* Gris très clair */
-}
-
-.articleLine:nth-child(odd) {
-    background-color: #ffffff; /* Blanc */
-}
-
-/* On stylise les cellules internes */
-.articleLine > div {
-    padding: 15px 20px;
-    border-bottom: 1px solid var(--backgroundColor);
-    flex: 1; /* Aligne les colonnes proprement */
+.articleLine div {
+    display: flex;
+    align-items: center;
 }
 
 .articleLine .title {
-    flex: 3; /* Le titre prend plus de place */
+    flex-grow: 1;
     font-weight: bold;
+    min-width: 200px;
 }
+
+.articleLine .content {
+    flex-grow: 1;
+}
+
+.articleLine > div {
+    padding: 20px;
+    border: 1px solid var(--backgroundColor);
+}
+
 /** 
  * Footer global de la page.
  */

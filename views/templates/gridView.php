@@ -9,20 +9,23 @@
 
 <div class="sorting-options">
     <span>Trier par date : </span>
-    <a href="index.php?action=showGridView&sort=date&order=asc">⬆️ Plus ancien</a> | 
-    <a href="index.php?action=showGridView&sort=date&order=desc">⬇️ Plus récent</a>
+    <a href="index.php?action=showGridView&sort=date_creation&order=ASC">⬆️ Plus ancien</a> | 
+    <a href="index.php?action=showGridView&sort=date_creation&order=DESC">⬇️ Plus récent</a>
 </div>
-<div class="adminArticle">
+<div class="adminList">
     <?php foreach ($articles as $article) { ?>
-        <div class="articleLine">
-            <div class="title"><?= $article->getTitle() ?></div>
-            <div class="views"><?= $article->getViews() ?> vues</div>
-            <div class="views"><?= $article->getCommentCount() ?> commentaires</div>
-             <div class="views"><?= $article->getDateCreation()->format('d/m/Y') ?></div>
-           
-        </div>
-    <?php } ?>
+        <div class="adminArticle">
+            <div class="articleLine">
+                <div class="title"><?= $article->getTitle() ?></div>
+                <div class="views"><?= $article->getViews() ?> vues</div>
+                <div class="views"><?= $article->getCommentCount() ?> commentaires</div>
+                <div class="views"><?= $article->getDateCreation()->format('d/m/Y') ?></div>
+            
+                </div>
+            </div>
+            <?php } ?>
 </div>
+    
 
 <a class="submit" href="index.php?action=admin">Admin</a></br>
 <a class="submit" href="index.php?action=showGridView">Vue d'ensemble</a>
