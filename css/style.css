@@ -316,7 +316,12 @@ a.info {
         background-color: var(--headerColor);
 
 }
-
+.articleLine .views {
+    width: 150px;           
+    justify-content: center; 
+    text-align: center;      
+    flex-shrink: 0;          
+}
 
 .articleLine {
     display: flex; 
@@ -331,6 +336,7 @@ a.info {
     flex-grow: 1;
     font-weight: bold;
     min-width: 200px;
+
 }
 
 .articleLine .content {

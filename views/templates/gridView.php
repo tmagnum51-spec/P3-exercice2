@@ -17,8 +17,8 @@
         <div class="adminArticle">
             <div class="articleLine">
                 <div class="title"><?= $article->getTitle() ?></div>
-                <div class="views"><?= $article->getViews() ?> vues</div>
-                <div class="views"><?= $article->getCommentCount() ?> commentaires</div>
+                <div class="views"><?= $article->getViews() ?> <?= $article->getViews() > 1 ? ' vues' : ' vue'; ?></div>
+                <div class="views"><?= $article->getCommentCount() ?><?= $article->getCommentCount() > 1 ? ' commentaires' : ' commentaire'; ?></div>
                 <div class="views"><?= $article->getDateCreation()->format('d/m/Y') ?></div>
             
                 </div>
