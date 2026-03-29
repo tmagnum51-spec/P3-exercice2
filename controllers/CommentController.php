@@ -44,4 +44,29 @@ class CommentController
         // On redirige vers la page de l'article.
         Utils::redirect("showArticle", ['id' => $idArticle]);
     }
+    public function deleteComment(): void {
+        //on recupere l'article auquel le commentaire est lié et le commentaire
+        $idComment = Utils::request("id"); // L'ID du commentaire à supprimer
+        $idArticle = Utils::request("idArticle");
+
+        // On vérifie que les données sont valides.
+        if (empty($idArticle) || empty($idComment)) {
+            throw new Exception("Tous les champs sont obligatoires. 3");
+        }
+        // On vérifie que l'article existe.
+        $articleManager = new ArticleManager();
+        $article = $articleManager->getArticleById($idArticle);
+        if (!$article) {
+            throw new Exception("L'article demandé n'existe pas.");
+        }
+         // On crée l'objet Comment.
+        $comment = new Comment(['id' => $idComment]);
+
+        //On delete en appellant la fonction delete du manager
+        $commentManager = new CommentManager();
+        $commentManager->deleteComment($comment);
+
+        // Une fois supprimé, on recharge la page de l'article en mode admin
+        Utils::redirect("showAdminDetailArticle", ['id' => $idArticle]);
+    }
 }

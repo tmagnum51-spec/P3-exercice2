@@ -20,4 +20,4 @@
 </div>
 
 <a class="submit" href="index.php?action=showUpdateArticleForm">Ajouter un article</a></br>
-<a class="submit" href="index.php?action=showGridView">Vue d'ensemble</a>
+<a class="submit" href="index.php?action=showGridView">Gérer les articles</a>

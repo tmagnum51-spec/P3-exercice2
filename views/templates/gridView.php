@@ -34,9 +34,11 @@
             <div class="articleLine">
                 <div class="title"><?= $article->getTitle() ?></div>
                 <div class="views"><?= $article->getViews() ?> <?= $article->getViews() > 1 ? ' vues' : ' vue'; ?></div>
-                <div class="views"><?= $article->getCommentCount() ?><?= $article->getCommentCount() > 1 ? ' commentaires' : ' commentaire'; ?></div>
+                <div class="views"><a href="index.php?action=showAdminDetailArticle&id=<?=$article->getId() ?>">
+                    <?=$article->getCommentCount() . ($article->getCommentCount() > 1 ? ' commentaires' : ' commentaire'); ?></a></div>
                 <div class="views"><?= $article->getDateCreation()->format('d/m/Y') ?></div>
-            
+                
+
             </div>
         </div>
     <?php } ?>

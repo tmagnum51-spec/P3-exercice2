@@ -56,7 +56,30 @@ class AdminController {
             'articles' => $articles, 'comments' => $commentManager
         ]);
     }
+    
+    public function showAdminDetailArticle():void {
+         // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
 
+        // Récupération de l'id de l'article demandé.
+        $id = Utils::request("id", -1);
+
+        $articleManager = new ArticleManager();
+        $article = $articleManager->getArticleById($id);
+        
+        if (!$article) {
+            throw new Exception("L'article demandé n'existe pas.");
+        }
+
+        $commentManager = new CommentManager();
+        $comments = $commentManager->getAllCommentsByArticleId($id);
+
+        $view = new View($article->getTitle());
+        $view->render("adminDetailArticle", ['article' => $article, 'comments' => $comments]);
+    }
+
+
+    
     /**
      * Vérifie que l'utilisateur est connecté.
      * @return void
